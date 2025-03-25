@@ -1,0 +1,25 @@
+
+.nav{
+    position:absolute;
+    top: 62px;
+    display: grid;
+    background-color: rgb(240, 240, 240);
+    width:100%;
+    border-bottom: 1px grey solid;
+    border-top: 1px grey solid;
+    left: 0;
+    right: 0;
+    transition:300ms linear 50ms;
+}
+
+.remove{
+    position:absolute;
+    top: -350px;
+    display: grid;
+    background-color: rgb(240, 240, 240);
+    width:100%;
+    border: 1px grey solid;
+    left: 0;
+    right: 0;
+    transition:300ms linear 50ms;
+}
