@@ -12,6 +12,11 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 class main_controller extends Controller
 {
     // instructor registration 
+
+    function main(){
+        $course = Course::all();
+        return view("main.welcome",compact("course"));
+    }
     public function instructor(Request $request)
     {
         $request->validate([
@@ -77,29 +82,34 @@ class main_controller extends Controller
     }
 
     // show course record on the admin page
-    function showCourse(){
-        return view('admin.course');
-    }
-
     // course upload page from the admin page
     function courseUpload(Request $req){
         $req->validate([
             'ins_id' => 'required',
             'cname' => 'required',
             'title' => 'required',
-            'video' => 'required|file|max:512000',
+            'video' => 'required|file',
+            'img' => 'required|file|',
         ]);
 
         $course = new course; 
 
+        // video
         $filename = $req->file('video');
-        $fname = rand().'video.'.$filename->getClientOriginalExtension();
+        $fname = time().'video.'.$filename->getClientOriginalExtension();
         $filename->storeAs('/public/video', $fname);
+
+        // thumbnail
+
+        $imgName = $req->file('img');
+        $img = time().'img.'.$filename->getClientOriginalExtension();
+        $imgName->storeAs('/public/Thumbnail', $img);
 
         $course->Course_name = $req->cname;
         $course->Title = $req->title;
         $course->Ins_id = $req->ins_id;
         $course->Video_url = $fname;
+        $course->Thumbnail = $img;
         $course->Description = $req->desc;
 
         $course->save();
@@ -167,5 +177,13 @@ class main_controller extends Controller
         $obj->Save();
         return redirect('/showInstructor')->with('success','instructor record updated successfully');
         
+    }
+
+
+    function showCourse(){
+        $obj = DB::table('courses')
+        ->Paginate(10); //simplePaginate() , cursorPaginate().
+        $data = compact('obj');
+        return view('admin.course',  $data);
     }
 }

@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('Course_name',100);
             $table->string('Title',100);
-            $table->integer('Ins_id')->foreign('Ins_id')->references('id')->on('instructors');
+            $table->string('Ins_id',100);
             $table->string('Video_url',100);
-            $table->string('Description',100);
+            $table->string('Thumbnail',100)->nullable();
+            $table->string('Description',100)->nullable();
             $table->timestamps();
         });
     }

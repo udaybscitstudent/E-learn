@@ -44,6 +44,7 @@
             </span>
         </div>
 
+
         <div class="w-[100%] p-3 font-semibold">
             <label for="">Select video</label><br>
             <input type="file" name="video" id="" class="w-[100%] text-sm rounded-md border border-gray-500 p-2">
@@ -54,6 +55,16 @@
             </span>
         </div>
 
+        <div class="w-[100%] p-3 font-semibold">
+            <label for="">Select Thumbnail</label><br>
+            <input type="file" name="img" id="" class="w-[100%] text-sm rounded-md border border-gray-500 p-2">
+            <span class="text-red-500">
+                @error('img')
+                {{$message}}
+                @enderror
+            </span>
+        </div>
+        
         <div class="w-[100%] p-3 font-semibold">
             <label for="">Description</label><br>
             <textarea name="desc" id="" rows="3" placeholder="Description" class="w-[100%] text-sm rounded-md border border-gray-500 p-2" value="{{old('desc')}}"></textarea>

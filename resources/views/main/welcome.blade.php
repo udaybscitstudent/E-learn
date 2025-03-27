@@ -202,11 +202,20 @@
             <div class="text-3xl text-purple-500">Explore new and trending free online courses</div>
         </div>
         <div class="h-auto w-full grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5 gap-y-7 rounded-t-m">
+            
+            @foreach($course as $val)
+                
             <div class="shadow-md " data-aos="fade-up">
-                <img class="rounded-t-md h-[65%] w-[100%]  object-cover" src="/storage/img/html.png">
+                {{-- <img class="rounded-t-md h-[65%] w-[100%]  object-cover" src="/storage/img/html.png"> --}}
+
+                <div class="group w-[100%] h-[65%]">
+                    <img src="/storage/Thumbnail/{{$val->Thumbnail}}" class="w-[100%] h-[100%] object-cover thumbnail rounded-t-md">
+                    <video src="/storage/video/{{ $val->Video_url }}" width="100%" controls oncontextmenu="return false;" class="hidden h-[100%] object-cover rounded-t-md video"></video>
+                </div>
+
                 <div class="mx-2">
                     <div>
-                        <h1 class="font-semibold text-lg my-2">HTML Course for Beginners</h1>
+                        <h1 class="font-semibold text-lg my-2">{{$val->Title}}</h1>
                     </div>
                     <div class="flex justify-between">
                         <div class=""><i class='bx bxs-star text-yellow-400 text-lg mr-2'></i>4.55</div>
@@ -220,23 +229,8 @@
                 </div>
             </div>
 
-            <div class="shadow-md" data-aos="fade-up">
-                <img class="rounded-t-md h-[65%] w-[100%] object-cover" src="/storage/img/css.png">
-                <div class="mx-2">
-                    <div>
-                        <h1 class="font-semibold text-lg my-2">Front End Development-CSS</h1>
-                    </div>
-                    <div class="flex justify-between">
-                        <div class=""><i class='bx bxs-star text-yellow-400 text-lg mr-2'></i>4.55</div>
-                        <div class=""><i class='bx bxs-graduation text-gray-500 text-lg mx-1'></i>5.8L+learners</div>
-                        <div class=""><i class='bx bxs-user text-gray-500 text-lg mx-1'></i>Beginner</div>
-                    </div>
-                    <div class="flex justify-between text-gray-500">
-                        <div><i class='bx bxs-time-five text-gray-500 mr-2'></i>2.0 Hrs</div>
-                        <div><b>Rs. 0</b>  <span class="text-sky-600 font-bold ml-2"><a href="login.html">Enroll Now ➡️</a></span></div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            
             
             <div class="shadow-md" data-aos="fade-up">
                 <img class="rounded-t-md h-[65%] w-[100%] object-cover" src="/storage/img/js.png">
@@ -250,8 +244,8 @@
                         <div class=""><i class='bx bxs-user text-gray-500 text-lg mx-1'></i>Beginner</div>
                     </div>
                     <div class="flex justify-between text-gray-500">
-                        <div><i class='bx bxs-time-five text-gray-500 mr-2'></i>2.0 Hrs</div>
-                        <div><b>Rs. 0</b>  <span class="text-sky-600 font-bold ml-2"><a href="login.html">Enroll Now ➡️</a></span></div>
+                        <div class="duration"><i class='bx bxs-time-five text-gray-500 mr-2'></i>2.0 Hrs</div>
+                        <div><b>Rs. 0</b>  <span class="text-sky-600 font-bold ml-2"><a href="/">Enroll Now ➡️</a></span></div>
                     </div>
                 </div>
             </div>
@@ -261,24 +255,6 @@
                 <div class="mx-2">
                     <div>
                         <h1 class="font-semibold text-lg my-2">Python Programming</h1>
-                    </div>
-                    <div class="flex justify-between">
-                        <div class=""><i class='bx bxs-star text-yellow-400 text-lg mr-2'></i>4.55</div>
-                        <div class=""><i class='bx bxs-graduation text-gray-500 text-lg mx-1'></i>5.8L+learners</div>
-                        <div class=""><i class='bx bxs-user text-gray-500 text-lg mx-1'></i>Beginner</div>
-                    </div>
-                    <div class="flex justify-between text-gray-500">
-                        <div><i class='bx bxs-time-five text-gray-500 mr-2'></i>2.0 Hrs</div>
-                        <div><b>Rs. 0</b>  <span class="text-sky-600 font-bold ml-2"> <a href="login.html">Enroll Now ➡️</a></span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="shadow-md" data-aos="fade-up">
-                <img class="rounded-t-md h-[65%] w-[100%]" src="/storage/img/sql.png">
-                <div class="mx-2">
-                    <div>
-                        <h1 class="font-semibold text-lg my-2">SQL for Data Science</h1>
                     </div>
                     <div class="flex justify-between">
                         <div class=""><i class='bx bxs-star text-yellow-400 text-lg mr-2'></i>4.55</div>
@@ -459,4 +435,34 @@
             <p class="border p-4">What are the most popular free courses offered by LearnAnything ?</p>
         </div>
     </div>
+
+    
+<script>
+    let group = document.querySelectorAll('.group');
+    let thumbnail = document.querySelectorAll('.thumbnail');
+    let video = document.querySelectorAll('.video');
+
+    group.forEach((item, index) => {
+        item.addEventListener('mouseover', () => {
+            thumbnail[index].style.display = 'none';
+            video[index].style.display = 'block';
+            video[index].currentTime=0;
+            video[index].play();
+
+            setTimeout(() => {
+            video[index].pause();
+            thumbnail[index].style.display = 'block';
+            video[index].style.display = 'none';
+            }, 30000);
+        });
+
+        item.addEventListener('mouseout', () => {
+            thumbnail[index].style.display = 'block';
+            video[index].style.display = 'none';
+            video[index].pause();
+        });
+    });
+
+</script>
+
 @endsection

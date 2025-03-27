@@ -15,9 +15,7 @@ use App\Http\Controllers\main_controller;
 |
 */
 
-Route::get('/', function () {
-    return view('main.welcome');
-});
+Route::get('/', [main_controller::class,'main']);
 
 
 Route::get('/menu', function () {
