@@ -57,23 +57,23 @@ Route::controller(main_controller::class)->group(function(){
 Route::view('/courseUpload','admin.upload');
 
 Route::controller(main_controller::class)->group(function(){
-    Route::get('/admin','admin');
-    Route::get('/showStudent','showStudent');
-    Route::get('/showInstructor','showInstructor');
-    Route::get('/showCourse','showCourse');
-    Route::post('/courseUpload','courseUpload');
+    Route::get('/admin','admin')->name('admin');
+    Route::get('/showStudent','showStudent')->name('SStudent');
+    Route::get('/showInstructor','showInstructor')->name('SInstructor');
+    Route::get('/showCourse','showCourse')->name('SCourse');
+    Route::post('/courseUpload','courseUpload')->name('CUpload');
 
     // delete instructor
-    Route::get('/deleteStudent/{sid}','deleteStudent');
-    Route::get('/deleteInstructor/{sid}','deleteInstructor');
+    Route::get('/deleteStudent/{sid}','deleteStudent')->name('DStudent');
+    Route::get('/deleteInstructor/{sid}','deleteInstructor')->name('DInstructor');
     
-    Route::get('/updateStudent/{sid}','updateStudent');
-    Route::post('/updateStudent/{sid}','sendStudentDetail');
+    Route::get('/updateStudent/{sid}','updateStudent')->name('UStudent');
+    Route::post('/updateStudent/{sid}','sendStudentDetail')->name('SSDetail');
     
-    Route::get('updateInstructor/{sid}' , 'updateInstructor');
-    Route::post('updateInstructor/{sid}' , 'sendInstructorDetail');
+    Route::get('updateInstructor/{sid}' , 'updateInstructor')->name('UInstructor');
+    Route::post('updateInstructor/{sid}' , 'sendInstructorDetail')->name('SIInstructor');
 
-});;
+});
 
 
 

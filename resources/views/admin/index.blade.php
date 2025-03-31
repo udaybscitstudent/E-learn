@@ -18,15 +18,15 @@
     <h2 class="text-2xl font-bold px-5 py-3 text-purple-500">E-learning</h2>
         <div class="mx-5">
         <div class="flex items-center mt-2">
-            <img src="storage/img/learn.png" class="size-10 rounded-full">
+            <img src="/storage/img/iamuday.jpg" class="size-10 rounded-full border-2 border-purple-500">
             <h2 class="py-5 pl-2">Uday kumar</h2>
         </div>
             <ul class="leading-10">
-                <a href="admin"><div class="flex justify-between text-purple-500 font-bold"><li>Dashboard</li><i class='bx bx-home mt-3'></i></div></a>
-                <a href="/showStudent"><div class="flex justify-between"><li>Student</li><i class='bx bxs-user mt-3 text-gray-500'></i></div></a>
-                <a href="/showInstructor"><div class="flex justify-between"><li>Instructor</li><i class='bx bxs-user-rectangle mt-3 text-gray-500' ></i></div></a>
-                <a href="/showCourse"><div class="flex justify-between"><li>course</li><i class='bx bxs-layer mt-3 text-gray-500' ></i></div></a>
-                <a href="/courseUpload"><div class="flex justify-between"><li>upload course</li><i class='bx bx-upload mt-3 text-gray-500'></i></div></a>
+                <a href="{{Route('admin')}}"><div class="flex justify-between text-purple-500 font-bold"><li>Dashboard</li><i class='bx bx-home mt-3'></i></div></a>
+                <a href="{{Route('SStudent')}}"><div class="flex justify-between"><li>Student</li><i class='bx bxs-user mt-3 text-gray-500'></i></div></a>
+                <a href="{{route('SInstructor')}}"><div class="flex justify-between"><li>Instructor</li><i class='bx bxs-user-rectangle mt-3 text-gray-500' ></i></div></a>
+                <a href="{{route('SCourse')}}"><div class="flex justify-between"><li>course</li><i class='bx bxs-layer mt-3 text-gray-500' ></i></div></a>
+                <a href="{{route('CUpload')}}"><div class="flex justify-between"><li>upload course</li><i class='bx bx-upload mt-3 text-gray-500'></i></div></a>
                 
                 
             </ul>
@@ -50,7 +50,7 @@
         @else
         <div class="grid grid-cols-3 gap-5 h-48 w-[90%] m-auto my-10 text-white">
             <div class=" rounded-sm grid place-items-center font-bold bg-pink-400">
-                <a href="showStudent"><div class="text-center">
+                <a href="{{route('SStudent')}}"><div class="text-center">
                 <p>Total Student</p>
                 <i class="bi bi-people-fill text-6xl"></i>
                 <p>{{ $totalStudent }}</p>
@@ -58,7 +58,7 @@
                 </a>
             </div>
             <div class="bg-blue-400 rounded-sm grid place-items-center font-bold ">
-                <a href="showInstructor"><div class="text-center">
+                <a href="{{route('SInstructor')}}"><div class="text-center">
                 <p>Total Instructor</p>
                 <i class="bi bi-people-fill text-6xl"></i>
                 <p>{{$totalInstructor}}</p>
@@ -66,7 +66,7 @@
                 </a>
             </div>
             <div class="bg-green-400 rounded-sm grid place-items-center font-bold">
-                <a href="#"><div class="text-center">
+                <a href="{{route('SCourse')}}"><div class="text-center">
                 <p>Total course</p>
                 <i class="bi bi-mortarboard-fill text-6xl"></i>
                 <p>{{$totalCourse}}</p>
